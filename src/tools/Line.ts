@@ -4,15 +4,17 @@ import { tempLayoutState, layoutState } from "../stores/layout.store";
 import { truePoint } from "../stores/view.store";
 
 export function start(e: MouseEvent) {
-  toolHelpers.setDrawing(true);
-  const point = truePoint(e.clientX, e.clientY, true);
-  tempLayoutState.update((prev) => ({
-    ...prev,
-    line: {
-      start: point,
-      end: point,
-    },
-  }));
+  if (e.button === 0) {
+    toolHelpers.setDrawing(true);
+    const point = truePoint(e.clientX, e.clientY, true);
+    tempLayoutState.update((prev) => ({
+      ...prev,
+      line: {
+        start: point,
+        end: point,
+      },
+    }));
+  }
 }
 
 export function move(e: MouseEvent) {

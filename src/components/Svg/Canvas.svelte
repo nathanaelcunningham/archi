@@ -18,6 +18,7 @@
 </script>
 
 <svelte:window on:keydown={handleKeydown} on:keyup={handleKeyup} />
+<svelte:body on:contextmenu|preventDefault={() => null} />
 
 <div class="svgContainer">
   <Grid />
@@ -44,6 +45,21 @@
           stroke-width={2}
           stroke="black"
           d={`M ${line.start.x} ${line.start.y} L ${line.end.x} ${line.end.y}`}
+        />
+      {/each}
+
+      {#if $tempLayoutState.wall}
+        <path
+          stroke-width={2}
+          stroke="black"
+          d={`M ${$tempLayoutState.wall.start.x} ${$tempLayoutState.wall.start.y} L ${$tempLayoutState.wall.end.x} ${$tempLayoutState.wall.end.y}`}
+        />
+      {/if}
+      {#each $layoutState.walls as wall}
+        <path
+          stroke-width={2}
+          stroke="black"
+          d={`M ${wall.start.x} ${wall.start.y} L ${wall.end.x} ${wall.end.y}`}
         />
       {/each}
     </g>
