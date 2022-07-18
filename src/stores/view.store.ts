@@ -32,14 +32,21 @@ export const viewState = writable<ViewState>(intitialViewState);
 export let viewData: ViewState;
 viewState.subscribe(($state) => (viewData = $state));
 
-export function truePoint(x: number, y: number) {
+export function truePoint(x: number, y: number, translate?: boolean) {
   let point = viewData.svg.createSVGPoint();
   point.x = x;
   point.y = y;
   point = point.matrixTransform(viewData.svg.getScreenCTM()?.inverse());
 
-  return {
-    x: point.x - viewData.translate.x,
-    y: point.y - viewData.translate.y,
-  };
+  if (translate) {
+    return {
+      x: point.x - viewData.translate.x,
+      y: point.y - viewData.translate.y,
+    };
+  } else {
+    return {
+      x: point.x,
+      y: point.y,
+    };
+  }
 }

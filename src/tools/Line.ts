@@ -5,7 +5,7 @@ import { truePoint } from "../stores/view.store";
 
 export function start(e: MouseEvent) {
   toolHelpers.setDrawing(true);
-  const point = truePoint(e.clientX, e.clientY);
+  const point = truePoint(e.clientX, e.clientY, true);
   tempLayoutState.update((prev) => ({
     ...prev,
     line: {
@@ -17,7 +17,7 @@ export function start(e: MouseEvent) {
 
 export function move(e: MouseEvent) {
   if (toolData.isDrawing) {
-    const point = truePoint(e.clientX, e.clientY);
+    const point = truePoint(e.clientX, e.clientY, true);
     tempLayoutState.update((prev) => ({
       ...prev,
       line: {
@@ -32,7 +32,7 @@ export function end(e: MouseEvent) {
   if (toolData.isDrawing) {
     toolHelpers.setDrawing(false);
     let templine = get(tempLayoutState).line;
-    const point = truePoint(e.clientX, e.clientY);
+    const point = truePoint(e.clientX, e.clientY, true);
 
     layoutState.update((prev) => ({
       ...prev,

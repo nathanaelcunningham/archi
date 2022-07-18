@@ -12,7 +12,7 @@ export function start(e: MouseEvent) {
 
 export function move(e: MouseEvent) {
   if (toolData.isDrawing) {
-    const point = truePoint(e.clientX, e.clientY);
+    const point = truePoint(e.clientX, e.clientY, true);
     tempLayoutState.update((prev) => ({
       ...prev,
       wall: {
@@ -31,7 +31,7 @@ export const wallTool: Tool = {
 };
 
 function createWall(e: MouseEvent) {
-  const point = truePoint(e.clientX, e.clientY);
+  const point = truePoint(e.clientX, e.clientY, true);
   const id = randomId();
 
   return {
