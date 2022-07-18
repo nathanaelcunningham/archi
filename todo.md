@@ -1,0 +1,12 @@
+- wall tool
+  - create
+  - select
+  - edit
+  - move
+- Toolbar
+- Layout renderer
+- state reducers/update functions to make updating state from tools easier
+- update definition of tool, allow more functions ?
+  - init
+- Organize types
+- Register tools + layout for extensibility?
