@@ -10,6 +10,7 @@ export function start(e: MouseEvent) {
     tempLayoutState.update((ts) => ({ ...ts, wall: null }));
     return;
   }
+
   if (toolData.isDrawing) {
     let wall = get(tempLayoutState).wall;
     layoutState.update((ls) => ({
@@ -32,7 +33,7 @@ export function start(e: MouseEvent) {
 export function move(e: MouseEvent) {
   if (toolData.isDrawing) {
     const point = truePoint(e.clientX, e.clientY, true);
-    console.log(point);
+
     tempLayoutState.update((prev) => ({
       ...prev,
       wall: {
