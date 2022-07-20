@@ -1,5 +1,3 @@
-<script lang="ts">
-  import { viewState } from "../../stores/view.store";
   import { tempLayoutState, layoutState } from "../../stores/layout.store";
   import Grid from "../../components/Svg/Grid.svelte";
   import { onMount } from "svelte";
@@ -10,7 +8,7 @@
     handleKeydown,
     handleKeyup,
   } from "../../helpers/handlers";
-  import { renderWall, drawPoints} from "src/tools/Wall";
+  import { drawCorners, drawPoints, renderWall, renderWall2 } from "src/tools/Wall";
 
   let svgElem: SVGSVGElement;
   onMount(() => {
@@ -50,10 +48,14 @@
       {/each}
 
       {#if $tempLayoutState.wall}
-      {@html renderWall($tempLayoutState.wall)}
+        {@html renderWall2($tempLayoutState.wall)}
+
       {/if}
       {#each $layoutState.walls as wall}
-        {@html renderWall(wall)}
+        {@html renderWall2(wall)}
+        <!-- {@html drawCorners(wall)} -->
+        {@html drawPoints(wall)}
+
       {/each}
     </g>
   </svg>
