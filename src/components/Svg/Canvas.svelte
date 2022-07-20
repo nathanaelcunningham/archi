@@ -10,6 +10,7 @@
     handleKeydown,
     handleKeyup,
   } from "../../helpers/handlers";
+  import { renderWall, drawPoints} from "src/tools/Wall";
 
   let svgElem: SVGSVGElement;
   onMount(() => {
@@ -49,18 +50,10 @@
       {/each}
 
       {#if $tempLayoutState.wall}
-        <path
-          stroke-width={2}
-          stroke="black"
-          d={`M ${$tempLayoutState.wall.start.x} ${$tempLayoutState.wall.start.y} L ${$tempLayoutState.wall.end.x} ${$tempLayoutState.wall.end.y}`}
-        />
+      {@html renderWall($tempLayoutState.wall)}
       {/if}
       {#each $layoutState.walls as wall}
-        <path
-          stroke-width={2}
-          stroke="black"
-          d={`M ${wall.start.x} ${wall.start.y} L ${wall.end.x} ${wall.end.y}`}
-        />
+        {@html renderWall(wall)}
       {/each}
     </g>
   </svg>

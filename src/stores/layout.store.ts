@@ -12,7 +12,7 @@ type Line = {
 
 type WallId = string;
 
-type Wall = {
+export type Wall = {
   id: WallId;
   start: Point;
   end: Point;
